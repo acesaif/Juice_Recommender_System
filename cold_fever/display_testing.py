@@ -81,7 +81,7 @@ def basing_image(ipt):
 
 	except Exception as e:
 		return html.Div([
-			html.H4('Server is down currently. Try after some time.')
+			html.H4('Some kind of nut got stuck into my AI system. Need some time to be alright')
 		], style={'textAlign' : 'center', 'margin-top' : 200})
 
 app.css.append_css({
