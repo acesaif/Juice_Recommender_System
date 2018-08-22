@@ -94,6 +94,7 @@ def basing_image(ipt):
 
 	try:
 		if ipt == '':
+			time.sleep(3)
 			return html.Div([
 				html.H4('Sorry, I cound not understand the Input.')
 			], style={'textAlign' : 'center', 'margin-top' : 200})
@@ -136,10 +137,11 @@ def basing_image(ipt):
 					], className='row')
 				])
 			)
-			time.sleep(1.5)
+			time.sleep(2)
 			return encoded_images
 
 	except Exception as e:
+		time.sleep(3)
 		return html.Div([
 			html.H4('Some kind of nut got stuck into my AI system. Need some time to be alright')
 		], style={'textAlign' : 'center', 'margin-top' : 200})
