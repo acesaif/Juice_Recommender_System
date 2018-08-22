@@ -9,19 +9,19 @@ for row in range(len(df)):
 	if juices[row][2] == 1 and juices[row][3] != 1 and juices[row][4] != 1:
 		juices[row].append('cold')
 	if juices[row][3] == 1 and juices[row][2] != 1 and juices[row][4] != 1:
-		juices[row].append('soarthroat')
+		juices[row].append('sorethroat')
 	if juices[row][4] == 1 and juices[row][2] != 1 and juices[row][3] != 1:
 		juices[row].append('fever')
 	if juices[row][2] == 1 and juices[row][3] == 1 and juices[row][4] != 1:
-		juices[row].append('cold_soarthroat')
+		juices[row].append('cold_sorethroat')
 	if juices[row][3] == 1 and juices[row][4] == 1 and juices[row][2] != 1:
-		juices[row].append('soarthroat_fever')
+		juices[row].append('sorethroat_fever')
 	if juices[row][2] == 1 and juices[row][4] == 1 and juices[row][3] != 1:
 		juices[row].append('cold_fever')
 	if juices[row][2] == 1 and juices[row][3] == 1 and juices[row][4] == 1:
-		juices[row].append('cold_soarthroat_fever')
+		juices[row].append('cold_sorethroat_fever')
 
-modified_data = [['fid', 'juice_name', 'disease_cold', 'disease_soarthroat', 'disease_fever', 'disease_curing']]
+modified_data = [['fid', 'juice_name', 'disease_cold', 'disease_sorethroat', 'disease_fever', 'disease_curing']]
 
 for data_row in juices:
 	modified_data.append(data_row)
