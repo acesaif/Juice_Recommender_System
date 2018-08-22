@@ -3,6 +3,7 @@ import dash
 import time
 import base64
 import string
+import random
 from textblob import Word
 from textblob import TextBlob
 import dash_core_components as dcc
@@ -30,7 +31,7 @@ def refined_cleaning(ipt):
 
 # print(refined_cleaning('coldfk fevergk')) # cold fever
 
-w = 'cold'
+specific_input = 'cold'
 pathy = os.getcwd()
 everything = os.listdir(pathy)
 all_dirs = []
@@ -39,4 +40,26 @@ for root, dirs, files in os.walk(pathy):
 		dirs.remove('.git')
 	all_dirs.append(dirs)
 main_dirs = all_dirs[0]
-print(main_dirs)
+
+matched_dirs = [dirs for dirs in main_dirs if specific_input in dirs]
+dirs_content = []
+for dirs in matched_dirs:
+	os.chdir(dirs)
+	dirs_content.append(os.listdir(os.getcwd()))
+	os.chdir(pathy)
+content = [j for i in dirs_content for j in i]
+
+only_images = []
+for file in content:
+	image, ext = os.path.splitext(file)
+	if ext == '.jpg' or ext == '.png':
+		only_images.append(image + ext)
+
+selected_images = [random.choice(only_images) for image in range(4)]
+
+images_paths = []
+for image in selected_images:
+	for root, dirs, files in os.walk(pathy):
+		for name in files:
+			if name == image:
+				images_paths.append(os.path.abspath(os.path.join(root, name)))
