@@ -4,9 +4,12 @@ import time
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv('juice_dataset.csv')
+df = pd.read_csv('juices_modified_dataset.csv')
 df = df.reset_index()
 # df = df.reindex(np.random.permutation(df.index))
+
+heading = list(df.columns)
+print(heading)
 
 foods = df.values.tolist()
 
@@ -15,32 +18,32 @@ def segregate_everything():
 	heading = list(df.columns)
 
 	cold_only = [heading]
-	soar_only = [heading]
+	soarthroat_only = [heading]
 	fever_only = [heading]
 
-	cold_soar = [heading]
-	soar_fever = [heading]
+	cold_soarthroat = [heading]
+	soarthroat_fever = [heading]
 	cold_fever = [heading]
 
-	cold_soar_fever = [heading]
+	cold_soarthroat_fever = [heading]
 
 	for item in range(len(df)):
-		if df['cold'][item] == 1 and df['soar_throat'][item] == 1 and df['fever'][item] == 1:
-			cold_soar_fever.append(foods[item])
-		if df['cold'][item] == 1 and df['soar_throat'][item] == 1 and not df['fever'][item] == 1:
-			cold_soar.append(foods[item])
-		if df['soar_throat'][item] == 1 and df['fever'][item] == 1 and not df['cold'][item] == 1:
-			soar_fever.append(foods[item])
-		if df['cold'][item] == 1 and df['fever'][item] == 1 and not df['soar_throat'][item] == 1:
+		if df['disease_cold'][item] == 1 and df['disease_soarthroat'][item] == 1 and df['disease_fever'][item] == 1:
+			cold_soarthroat_fever.append(foods[item])
+		if df['disease_cold'][item] == 1 and df['disease_soarthroat'][item] == 1 and not df['disease_fever'][item] == 1:
+			cold_soarthroat.append(foods[item])
+		if df['disease_soarthroat'][item] == 1 and df['disease_fever'][item] == 1 and not df['disease_cold'][item] == 1:
+			soarthroat_fever.append(foods[item])
+		if df['disease_cold'][item] == 1 and df['disease_fever'][item] == 1 and not df['disease_soarthroat'][item] == 1:
 			cold_fever.append(foods[item])
-		if df['cold'][item] == 1 and not df['soar_throat'][item] == 1 and not df['fever'][item] == 1:
+		if df['disease_cold'][item] == 1 and not df['disease_soarthroat'][item] == 1 and not df['disease_fever'][item] == 1:
 			cold_only.append(foods[item])
-		if not df['cold'][item] == 1 and df['soar_throat'][item] == 1 and not df['fever'][item] == 1:
-			soar_only.append(foods[item])
-		if not df['cold'][item] == 1 and not df['soar_throat'][item] == 1 and df['fever'][item] == 1:
+		if not df['disease_cold'][item] == 1 and df['disease_soarthroat'][item] == 1 and not df['disease_fever'][item] == 1:
+			soarthroat_only.append(foods[item])
+		if not df['disease_cold'][item] == 1 and not df['disease_soarthroat'][item] == 1 and df['disease_fever'][item] == 1:
 			fever_only.append(foods[item])
 
-	diseases = ['cold_only','soar_only','fever_only','cold_soar','soar_fever','cold_fever','cold_soar_fever']
+	diseases = ['cold_only','soarthroat_only','fever_only','cold_soarthroat','soarthroat_fever','cold_fever','cold_soarthroat_fever']
 
 	main_path = os.getcwd()
 
@@ -53,4 +56,6 @@ def segregate_everything():
 			writer.writerows(data)
 		os.chdir(main_path)
 
-# segregate_everything()
+segregate_everything()
+
+print('finished')
