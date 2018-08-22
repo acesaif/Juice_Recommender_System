@@ -136,11 +136,8 @@ def basing_image(ipt):
 					], className='row')
 				])
 			)
+			time.sleep(1.5)
 			return encoded_images
-		# else:
-		# 	return html.Div([
-		# 		html.H4('Sorry, I cound not understand the Input.')
-		# 	], style={'textAlign' : 'center', 'margin-top' : 200})
 
 	except Exception as e:
 		return html.Div([
